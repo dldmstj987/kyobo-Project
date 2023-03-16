@@ -7,11 +7,17 @@
         SELECT * FROM `book_tbl`;
     </select>
     
-    <insert id="insert_cart">
-        INSERT INTO `cart_tbl` VALUES (`userEmail`, `bookISBN`)
-        (#{email}, #{bookISBN}})
+    <insert id="insert_cart" parameterType="java.util.List">
+        INSERT INTO `cart_tbl` VALUES (`userEmail`, `bookISBN`, 'bookCount') VALUES
+        <foreach item="cartDTOS" collection="list" separator="," close="">
+            (#{cartDTOS.userEmail}, #{cartDTOS.bookISBN}, #{cartDTOS.bookCount})
+    </foreach>
         ON DUPLICATED KEY UPDATE
-        (`bookISBN` = `bookISBN` + 1)
+        `bookCount` = `bookCount` + 1
+    </insert>
+
+    <insert id="insert_books_in_heart" parameterType="java.util.List">
+
     </insert>
 </mapper>
 

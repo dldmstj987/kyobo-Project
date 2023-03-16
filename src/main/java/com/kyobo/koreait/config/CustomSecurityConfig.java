@@ -45,7 +45,7 @@ public class CustomSecurityConfig {
                 .tokenValiditySeconds(60 * 60 * 24 * 30);
 
         http.csrf();
-        
+
         return http.build();
     }
 
@@ -73,10 +73,6 @@ public class CustomSecurityConfig {
 
 
 }
-
-
-
-
 
 
 
